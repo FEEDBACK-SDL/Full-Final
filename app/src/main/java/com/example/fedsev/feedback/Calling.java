@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,10 +43,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class Calling extends AppCompatActivity {
-    List<String> listDataHeader;
-    List<String> listDataChild;
+    ArrayList<String> listDataHeader;
+    ArrayList<RecycleData> finalList;
+    ArrayList<String> listDataChild;
     Context context;
-    ListView listView,listView2;
+
     BottomSheetBehavior sheetBehavior;
 
     TextView name,number;
@@ -56,10 +58,12 @@ public class Calling extends AppCompatActivity {
     adapter a;
     LinearLayout linearLayout;
     View avi ;
+    RecyclerView recyclerView;
     Bundle b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        recyclerView = findViewById(R.id.recycle);
         context = getApplicationContext();
         b = savedInstanceState;
         setContentView(R.layout.activity_calling);
@@ -93,17 +97,16 @@ public class Calling extends AppCompatActivity {
             }
         });
 
-        listView = findViewById(R.id.listView);
-        listView2 = findViewById(R.id.listView2);
-        prepareListData();
-        flag = 0;
-        a = new adapter();
-        listView.setAdapter(a);
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         prepareListData();
-        a2 = new adapter2();
-        listView2.setAdapter(a2);
+        recyclerView = findViewById(R.id.recycle);
+        recyclerView.setHasFixedSize(false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(0);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        CallRecyclerAdapter callRecyclerAdapter = new CallRecyclerAdapter(finalList);
+        recyclerView.setAdapter(callRecyclerAdapter);
         SwipeButton enableButton = (SwipeButton) findViewById(R.id.swipe_btn);
         enableButton.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
@@ -165,8 +168,8 @@ public class Calling extends AppCompatActivity {
                 listDataChild.add(String.valueOf(dataFromServer.getKms()));
                 a = new adapter();
                 a2 = new adapter2();
-                listView.setAdapter(a);
-                listView2.setAdapter(a2);
+
+
                 avi.setVisibility(View.GONE);
                 FancyToast.makeText(Calling.this,"Success",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
             }
@@ -183,7 +186,35 @@ public class Calling extends AppCompatActivity {
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new ArrayList<String>();
-
+        finalList = new ArrayList<>();
+        {
+            RecycleData recycleData = new RecycleData();
+            recycleData.setHeader("Service ID");
+            recycleData.setFooter("wait....");
+            recycleData.setColor(1);
+            finalList.add(recycleData);
+        }
+        {
+            RecycleData recycleData1 = new RecycleData();
+            recycleData1.setHeader("Last Service");
+            recycleData1.setFooter("wait....");
+            recycleData1.setColor(2);
+            finalList.add(recycleData1);
+        }
+        {
+            RecycleData recycleData2 = new RecycleData();
+            recycleData2.setHeader("Next Service");
+            recycleData2.setFooter("wait....");
+            recycleData2.setColor(3);
+            finalList.add(recycleData2);
+        }
+        {
+            RecycleData recycleData3 = new RecycleData();
+            recycleData3.setHeader("Kilometers");
+            recycleData3.setFooter("wait....");
+            recycleData3.setColor(4);
+            finalList.add(recycleData3);
+        }
         //hello
         // Adding child data
         listDataHeader.add("Service ID");
@@ -236,7 +267,7 @@ public class Calling extends AppCompatActivity {
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = infalInflater.inflate(R.layout.list_layout, null);
             }
-            TextView textView = (TextView) view.findViewById(R.id.lblListHeader);
+            TextView textView = (TextView) view.findViewById(R.id.footer);
             //Log.d("asd",String.valueOf(i) + String.valueOf(flag));
             if (flag == 0){
                 textView.setText(listDataHeader.get(i));}
@@ -270,7 +301,7 @@ public class Calling extends AppCompatActivity {
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = infalInflater.inflate(R.layout.list_layout, null);
             }
-            TextView textView = (TextView) view.findViewById(R.id.lblListHeader);
+            TextView textView = (TextView) view.findViewById(R.id.header);
             // Log.d("asd",String.valueOf(i) + String.valueOf(flag));
 
             textView.setText(listDataChild.get(i));
