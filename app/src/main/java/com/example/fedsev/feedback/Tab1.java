@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Tab1 extends Fragment
 {
+    boolean flag = false;
     private View v;
 
     public Tab1()
@@ -39,7 +40,7 @@ public class Tab1 extends Fragment
     }
 
 
-    private long timeCountInMilliSeconds = 60000;
+    private long  timeCountInMilliSeconds = 5000;
 
     private ProgressBar progressBarCircle;
     private EditText editTextMinute;
@@ -54,7 +55,6 @@ public class Tab1 extends Fragment
      */
     private void initViews() {
         progressBarCircle = (ProgressBar) v.findViewById(R.id.progressBarCircle);
-        editTextMinute = (EditText) v.findViewById(R.id.editTextMinute);
         textViewTime = (TextView) v.findViewById(R.id.textViewTime);
 //        imageViewReset = (ImageView) findViewById(R.id.imageViewReset);
 //        imageViewStartStop = (ImageView) findViewById(R.id.imageViewStartStop);
@@ -70,35 +70,38 @@ public class Tab1 extends Fragment
      */
     private void startCountDownTimer() {
 
-        countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
+        if (!flag){
+            countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
 
-                textViewTime.setText(hmsTimeFormatter(millisUntilFinished));
+                    textViewTime.setText(hmsTimeFormatter(millisUntilFinished));
 
-                progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
+                    progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
-                // call to initialize the progress bar values
-                setProgressBarValues();
-                startCountDownTimer();
-                // hiding the reset icon
-               // imageViewReset.setVisibility(View.GONE);
-                // changing stop icon to start icon
-               // imageViewStartStop.setImageResource(R.drawable.icon_start);
-                // making edit text editable
-                editTextMinute.setEnabled(true);
-                // changing the timer status to stopped
-                //timerStatus = TimerStatus.STOPPED;
-            }
+                    textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
+                    // call to initialize the progress bar values
+                    setProgressBarValues();
+                   // startCountDownTimer();
+                    // hiding the reset icon
+                    // imageViewReset.setVisibility(View.GONE);
+                    // changing stop icon to start icon
+                    // imageViewStartStop.setImageResource(R.drawable.icon_start);
+                    // making edit text editable
+                    // changing the timer status to stopped
+                    //timerStatus = TimerStatus.STOPPED;
+                }
 
-        }.start();
-        countDownTimer.start();
+            }.start();
+            countDownTimer.start();
+            flag = true;
+        }
+
     }
 
 
@@ -109,7 +112,7 @@ public class Tab1 extends Fragment
     private void setProgressBarValues() {
 
         progressBarCircle.setMax((int) timeCountInMilliSeconds / 1000);
-        progressBarCircle.setProgress((int) timeCountInMilliSeconds / 100);
+        progressBarCircle.setProgress((int) timeCountInMilliSeconds / 1000);
     }
 
 
