@@ -12,6 +12,8 @@
     <string name="progress_bar_value2">17/20</string>
     <string name="progress_bar_text1">Number of working hours completed</string>
     <string name="progress_bar_text2">Total Calls made today</string>
+    <string name="hint_minute">Minute</string>
+    <string name="message_minutes">Please Enter Minutes...</string>
 
     <string-array name="Dates">
         <item>Yesterday</item>
