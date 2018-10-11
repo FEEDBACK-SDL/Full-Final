@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".Login">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,15 +32,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="15dp">
-                <EditText android:id="@+id/input_email"
+                <EditText android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:translationY="5dp"
                     android:paddingBottom="10dp"
                     android:background="@drawable/rounded_edittext"
-                    android:inputType="textEmailAddress"
-                    android:hint="Email" />
+                    android:inputType="text"
+                    android:hint="Username" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Password Label -->
@@ -49,7 +50,7 @@
                 android:layout_marginTop="8dp"
                 android:paddingBottom="20dp"
                 android:layout_marginBottom="15dp">
-                <EditText android:id="@+id/input_password"
+                <EditText android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -68,6 +69,7 @@
                 android:layout_marginBottom="24dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:onClick="loginfunc"
                 android:padding="12dp"
                 android:background="@drawable/rounded_edittext"
                 android:text="Login"/>
@@ -87,5 +89,15 @@
 
         </LinearLayout>
     </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="gone"
+        app:indicatorName="BallPulseSyncIndicator"
+        app:indicatorColor="#00B2EE"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>
