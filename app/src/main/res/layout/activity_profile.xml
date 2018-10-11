@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/ProfileImageNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ProfileImageNameLayoutHeight"
+            android:background="#FFEEEEEE"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ProfileImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+            <com.roger.match.library.MatchTextView
+                android:id="@+id/ProfileUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintTop_toBottomOf="@id/ProfileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="@dimen/ProfileDetailsLayoutWidth"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
+            app:cardCornerRadius="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/ProfileImageNameLayout">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFCCCCCC"
+                android:orientation="vertical"
+                >
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/EmailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/EmailIcon"
+                        android:layout_width="@dimen/ProfileDetailsIconSize"
+                        android:layout_height="@dimen/ProfileDetailsIconSize"
+                        android:src="@drawable/ic_email"
+                        tools:layout_editor_absoluteY="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/EmailEditText"
+                        android:layout_width="@dimen/ProfileDetailsWidth"
+                        android:layout_height="@dimen/ProfileDetailsHeight"
+                        android:layout_marginStart="15dp"
+                        android:enabled="false"
+                        app:layout_constraintStart_toEndOf="@id/EmailIcon"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/ContactLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/EmailLayout">
+
+                    <ImageView
+                        android:id="@+id/ContactIcon"
+                        android:layout_width="@dimen/ProfileDetailsIconSize"
+                        android:layout_height="@dimen/ProfileDetailsIconSize"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:src="@drawable/ic_phone"/>
+
+                    <EditText
+                        android:id="@+id/ContactEditText"
+                        android:layout_width="@dimen/ProfileDetailsWidth"
+                        android:layout_height="@dimen/ProfileDetailsHeight"
+                        android:layout_marginStart="15dp"
+                        android:enabled="false"
+                        app:layout_constraintStart_toEndOf="@id/ContactIcon"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/ContactLayout">
+
+                    <ImageView
+                        android:id="@+id/RatingIcon"
+                        android:layout_width="@dimen/ProfileDetailsIconSize"
+                        android:layout_height="@dimen/ProfileDetailsIconSize"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:src="@drawable/ic_rate"/>
+
+                    <RatingBar
+                        android:id="@+id/RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        app:layout_constraintStart_toEndOf="@id/RatingIcon"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/EditProfilefab"
+            android:layout_width="@dimen/fabSize"
+            android:layout_height="@dimen/fabSize"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="15dp"
+            app:elevation="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_edit"/>
+
+    </android.support.constraint.ConstraintLayout>
