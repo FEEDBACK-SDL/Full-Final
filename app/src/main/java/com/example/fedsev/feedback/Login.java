@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void goNext(View view) {
+        syncData();
         Intent i = new Intent(Login.this,MainActivity.class);
         startActivity(i);
 
@@ -57,6 +60,7 @@ public class Login extends AppCompatActivity {
                public void onResponse(Call<String> call, Response<String> response) {
                    Log.d("asd",response.body());
                    if(response.body().equals("true")){
+                       syncData();
                        Intent i = new Intent(Login.this,MainActivity.class);
                        startActivity(i);
                    }
@@ -126,5 +130,36 @@ public class Login extends AppCompatActivity {
         editor.putInt("rating",ld.getRating());
         editor.apply();
     }
+public void syncData() {
+    SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
+    String token = sharedPreferences.getString("token", "");
+    if (!token.equals("")) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        avi = findViewById(R.id.avi);
+        avi.setVisibility(View.VISIBLE);
+        API api = retrofit.create(API.class);
+        Call<ArrayList<SyncData>> call = api.sync(token);
+        call.enqueue(new Callback<ArrayList<SyncData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<SyncData>> call, Response<ArrayList<SyncData>> response) {
+                ArrayList<SyncData> arrayList = response.body();
+                for (SyncData syncData : arrayList) {
+                    Log.d("asd", syncData.getModel());
+                    CallsRoom callsRoom = new CallsRoom();
+                    callsRoom.setName(syncData.getFirst_name() + " " + syncData.getLast_name());
+                    callsRoom.setPhoneNo(syncData.getPhone());
+                    MainActivity.myAppDatabase.myDao().addCalls(callsRoom);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ArrayList<SyncData>> call, Throwable t) {
+
+            }
+        });
+    }
+}
 }

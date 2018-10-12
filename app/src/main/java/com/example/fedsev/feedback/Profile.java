@@ -58,8 +58,8 @@ public class Profile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_profile , container, false);
 
-        setColumn(1,"David James" , "9123456780");
-        MainActivity.myAppDatabase.myDao().addCalls(call);
+//        setColumn(1,"David James" , "9123456780");
+//        MainActivity.myAppDatabase.myDao().addCalls(call);
 //        setColumn(2,"Steve Smith" , "12345678901");
 //        MainActivity.myAppDatabase.myDao().addCalls(call);
 

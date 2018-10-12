@@ -21,4 +21,6 @@ public interface MyDao
 
     @Query("Select * from CallStatEntity")
     public List<CallStatEntity> getrecords();
+
+
 }

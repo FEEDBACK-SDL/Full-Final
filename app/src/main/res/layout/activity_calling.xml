@@ -334,7 +334,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
-                                    android:textSize="25dp"
+                                    android:textSize="20dp"
                                     android:textColor="#000"
                                     android:text="How will you rate the assistance provided during service"
                                     android:textAlignment="center"
@@ -375,7 +375,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:textColor="#000"
-                                    android:textSize="25dp"
+                                    android:textSize="20dp"
                                     android:text="Will you like to have express service on next service date?"
                                     android:textAlignment="center"
                                     />

@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class CallsRoom
 {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     @ColumnInfo(name="PhoneNo") //explicitly mention column name in table
