@@ -40,7 +40,7 @@ public class Tab1 extends Fragment
     }
 
 
-    private long  timeCountInMilliSeconds = 5000;
+    private long  timeCountInMilliSeconds = 60000;
 
     private ProgressBar progressBarCircle;
     private EditText editTextMinute;

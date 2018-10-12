@@ -18,6 +18,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.security.AccessController.getContext;
+
 
 public class Login extends AppCompatActivity {
     EditText username,password;
@@ -25,8 +27,10 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         username = findViewById(R.id.username);
+        checkAuth();
         password = findViewById(R.id.password);
     }
 
@@ -34,6 +38,37 @@ public class Login extends AppCompatActivity {
         Intent i = new Intent(Login.this,MainActivity.class);
         startActivity(i);
 
+    }
+
+    public void checkAuth(){
+        SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token","");
+        if(!token.equals("")){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(API.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            avi = findViewById(R.id.avi);
+            avi.setVisibility(View.VISIBLE);
+            API api = retrofit.create(API.class);
+            Call<String> call = api.getAuth(token);
+           call.enqueue(new Callback<String>() {
+               @Override
+               public void onResponse(Call<String> call, Response<String> response) {
+                   Log.d("asd",response.body());
+                   if(response.body().equals("true")){
+                       Intent i = new Intent(Login.this,MainActivity.class);
+                       startActivity(i);
+                   }
+               }
+
+               @Override
+               public void onFailure(Call<String> call, Throwable t) {
+                   Log.d("asd","error");
+               }
+           });
+            avi.setVisibility(View.GONE);
+        }
     }
 
     public void loginfunc(View view) {

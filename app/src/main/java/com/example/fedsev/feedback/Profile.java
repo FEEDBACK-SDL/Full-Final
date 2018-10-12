@@ -58,8 +58,8 @@ public class Profile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_profile , container, false);
 
-//        setColumn(1,"David James" , "9123456780");
-//        MainActivity.myAppDatabase.myDao().addCalls(call);
+        setColumn(1,"David James" , "9123456780");
+        MainActivity.myAppDatabase.myDao().addCalls(call);
 //        setColumn(2,"Steve Smith" , "12345678901");
 //        MainActivity.myAppDatabase.myDao().addCalls(call);
 
@@ -69,17 +69,19 @@ public class Profile extends Fragment {
         EmailEditText = (EditText) view.findViewById(R.id.EmailEditText);
         ContactEditText = (EditText) view.findViewById(R.id.ContactEditText);
 
-        final SharedPreferences sharedPreferences = this.getContext().getSharedPreferences("myfile", getContext().MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = this.getContext().getSharedPreferences("private_data", getContext().MODE_PRIVATE);
+//        System.out.println(sharedPreferences.getString("email",""));
         EmailEditText.setText(sharedPreferences.getString("email",""));
         ContactEditText.setText(sharedPreferences.getString("contact",""));
 
-        int rating = 2;
+        int rating = sharedPreferences.getInt("rating",2);
 
         ratingBar.setMax(MaxRating);
         ratingBar.setRating(rating);
+        ratingBar.setEnabled(false);
 
         MatchTextView matchTextView = (MatchTextView) view.findViewById(R.id.ProfileUsername);
-        matchTextView.setText(Html.fromHtml("<h2>Test Profile<h2>").toString());
+        matchTextView.setText(sharedPreferences.getString("first_name","John") +" "+ sharedPreferences.getString("last_name","Doe"));
         matchTextView.setTextSize(40);
         matchTextView.setTextColor(Color.RED);
         matchTextView.setAlpha(0.75f);

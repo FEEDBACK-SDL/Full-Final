@@ -32,7 +32,7 @@ public class Tab2 extends Fragment
         lstContact = new ArrayList<>();
 
         for(CallsRoom call : calls) {
-            lstContact.add(new Contact(call.getName(), call.getPhoneNo(), R.drawable.ic_format_italic_black_24dp));
+            lstContact.add(new Contact(call.getName(), call.getPhoneNo(), R.drawable.callimg));
         }
 
 

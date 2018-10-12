@@ -159,8 +159,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
-                                    android:textSize="25dp"
-                                    android:text="Sample Question 1"
+                                    android:textSize="20dp"
+                                    android:text="How will you rate our service?"
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
@@ -198,8 +198,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
-                                    android:textSize="25dp"
-                                    android:text="Sample Question 2"
+                                    android:textSize="20dp"
+                                    android:text="Was the delivery on time?"
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
@@ -246,8 +246,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
-                                    android:textSize="25dp"
-                                    android:text="Sample Question 1"
+                                    android:textSize="20dp"
+                                    android:text="How is car performance after service?"
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
@@ -285,8 +285,8 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="#000"
                                     android:layout_gravity="right"
-                                    android:textSize="25dp"
-                                    android:text="Sample Question 2"
+                                    android:textSize="20dp"
+                                    android:text="Are you satisfied with our service?"
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
@@ -336,7 +336,7 @@
                                     android:layout_gravity="right"
                                     android:textSize="25dp"
                                     android:textColor="#000"
-                                    android:text="Sample Question 1"
+                                    android:text="How will you rate the assistance provided during service"
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
@@ -376,7 +376,7 @@
                                     android:layout_gravity="right"
                                     android:textColor="#000"
                                     android:textSize="25dp"
-                                    android:text="Sample Question 2"
+                                    android:text="Will you like to have express service on next service date?"
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
