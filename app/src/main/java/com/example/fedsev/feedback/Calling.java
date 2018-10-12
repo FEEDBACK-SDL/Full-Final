@@ -58,6 +58,7 @@ public class Calling extends AppCompatActivity {
     adapter a;
     LinearLayout linearLayout;
     View avi ;
+    CallRecyclerAdapter callRecyclerAdapter;
     RecyclerView recyclerView;
     Bundle b;
     @Override
@@ -99,13 +100,14 @@ public class Calling extends AppCompatActivity {
 
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        sertData();
         prepareListData();
         recyclerView = findViewById(R.id.recycle);
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(0);
         recyclerView.setLayoutManager(linearLayoutManager);
-        CallRecyclerAdapter callRecyclerAdapter = new CallRecyclerAdapter(finalList);
+        callRecyclerAdapter = new CallRecyclerAdapter(finalList);
         recyclerView.setAdapter(callRecyclerAdapter);
         SwipeButton enableButton = (SwipeButton) findViewById(R.id.swipe_btn);
         enableButton.setOnStateChangeListener(new OnStateChangeListener() {
@@ -161,15 +163,17 @@ public class Calling extends AppCompatActivity {
                 Log.d("asd",dataFromServer.getFname());
                 name.setText(dataFromServer.getFname() + " " + dataFromServer.getLname());
                 number.setText(dataFromServer.getPhone());
+
                 listDataChild = new ArrayList<>();
                 listDataChild.add(String.valueOf(dataFromServer.getService_id()));
                 listDataChild.add(String.valueOf(dataFromServer.getD_Service()));
                 listDataChild.add(String.valueOf(dataFromServer.getN_Service()));
                 listDataChild.add(String.valueOf(dataFromServer.getKms()));
-                a = new adapter();
-                a2 = new adapter2();
 
+                prepareListData();
 
+                callRecyclerAdapter = new CallRecyclerAdapter(finalList);
+                recyclerView.setAdapter(callRecyclerAdapter);
                 avi.setVisibility(View.GONE);
                 FancyToast.makeText(Calling.this,"Success",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
             }
@@ -183,40 +187,9 @@ public class Calling extends AppCompatActivity {
         });
 
     }
-    private void prepareListData() {
+    private void sertData(){
         listDataHeader = new ArrayList<String>();
         listDataChild = new ArrayList<String>();
-        finalList = new ArrayList<>();
-        {
-            RecycleData recycleData = new RecycleData();
-            recycleData.setHeader("Service ID");
-            recycleData.setFooter("wait....");
-            recycleData.setColor(1);
-            finalList.add(recycleData);
-        }
-        {
-            RecycleData recycleData1 = new RecycleData();
-            recycleData1.setHeader("Last Service");
-            recycleData1.setFooter("wait....");
-            recycleData1.setColor(2);
-            finalList.add(recycleData1);
-        }
-        {
-            RecycleData recycleData2 = new RecycleData();
-            recycleData2.setHeader("Next Service");
-            recycleData2.setFooter("wait....");
-            recycleData2.setColor(3);
-            finalList.add(recycleData2);
-        }
-        {
-            RecycleData recycleData3 = new RecycleData();
-            recycleData3.setHeader("Kilometers");
-            recycleData3.setFooter("wait....");
-            recycleData3.setColor(4);
-            finalList.add(recycleData3);
-        }
-        //hello
-        // Adding child data
         listDataHeader.add("Service ID");
         listDataHeader.add("Last Service");
         listDataHeader.add("Next Service");
@@ -228,6 +201,41 @@ public class Calling extends AppCompatActivity {
         listDataChild.add("wait.... ");
         listDataChild.add("wait...");
         listDataChild.add("wait...");
+    }
+    private void prepareListData() {
+
+        finalList = new ArrayList<>();
+        {
+            RecycleData recycleData = new RecycleData();
+            recycleData.setHeader("Service ID");
+            recycleData.setFooter(listDataChild.get(0));
+            recycleData.setColor(1);
+            finalList.add(recycleData);
+        }
+        {
+            RecycleData recycleData1 = new RecycleData();
+            recycleData1.setHeader("Last Service");
+            recycleData1.setFooter(listDataChild.get(1));
+            recycleData1.setColor(2);
+            finalList.add(recycleData1);
+        }
+        {
+            RecycleData recycleData2 = new RecycleData();
+            recycleData2.setHeader("Next Service");
+            recycleData2.setFooter(listDataChild.get(2));
+            recycleData2.setColor(3);
+            finalList.add(recycleData2);
+        }
+        {
+            RecycleData recycleData3 = new RecycleData();
+            recycleData3.setHeader("Kilometers");
+            recycleData3.setFooter(listDataChild.get(3));
+            recycleData3.setColor(4);
+            finalList.add(recycleData3);
+        }
+        //hello
+        // Adding child data
+
     }
 
     public void Call(View view) {
