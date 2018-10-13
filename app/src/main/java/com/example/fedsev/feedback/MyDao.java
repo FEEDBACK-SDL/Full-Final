@@ -21,7 +21,7 @@ public interface MyDao
     @Query("select * from CallsRoom")
     public List<CallsRoom>  getCalls();
 
-    @Query("select * from syncdata where callisdone = 0 Limit 1 ")
+    @Query("select * from syncdata where callisdone = 0 or callisdone = 2 ORDER BY callisdone asc Limit 1 ")
     public SyncData getData();
 
 
