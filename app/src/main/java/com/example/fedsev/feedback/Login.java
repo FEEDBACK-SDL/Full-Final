@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
         syncData();
         Intent i = new Intent(Login.this,MainActivity.class);
         startActivity(i);
-
+        finish();
     }
 
     public void checkAuth(){
@@ -63,6 +63,7 @@ public class Login extends AppCompatActivity {
                        syncData();
                        Intent i = new Intent(Login.this,MainActivity.class);
                        startActivity(i);
+                       finish();
                    }
                }
 
@@ -151,7 +152,12 @@ public void syncData() {
                     CallsRoom callsRoom = new CallsRoom();
                     callsRoom.setName(syncData.getFirst_name() + " " + syncData.getLast_name());
                     callsRoom.setPhoneNo(syncData.getPhone());
-                    MainActivity.myAppDatabase.myDao().addCalls(callsRoom);
+                    try {
+                        MainActivity.myAppDatabase.myDao().addSyncData(syncData);
+                    }
+                    catch (Exception e){
+
+                    }
                 }
             }
 

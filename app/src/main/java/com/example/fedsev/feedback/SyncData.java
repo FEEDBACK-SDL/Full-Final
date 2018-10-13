@@ -1,5 +1,10 @@
 package com.example.fedsev.feedback;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class SyncData {
 
     String cust_id;
@@ -8,10 +13,22 @@ public class SyncData {
     String phone;
     String vehical_number;
     String model;
+    @NonNull
+    @PrimaryKey
     String service_id;
     String l_service;
     String n_service;
     int kms;
+
+    int callisdone;
+
+    public int getCallisdone() {
+        return callisdone;
+    }
+
+    public void setCallisdone(int callisdone) {
+        this.callisdone = callisdone;
+    }
 
     public String getCust_id() {
         return cust_id;

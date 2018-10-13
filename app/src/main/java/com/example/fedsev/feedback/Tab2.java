@@ -27,12 +27,12 @@ public class Tab2 extends Fragment
         super.onCreate(savedInstanceState);
 
 
-        List<CallsRoom> calls = MainActivity.myAppDatabase.myDao().getCalls();
+        List<SyncData> calls = MainActivity.myAppDatabase.myDao().syncData();
 
         lstContact = new ArrayList<>();
 
-        for(CallsRoom call : calls) {
-            lstContact.add(new Contact(call.getName(), call.getPhoneNo(), R.drawable.callimg));
+        for(SyncData call : calls) {
+            lstContact.add(new Contact(call.getFirst_name() + " " + call.getLast_name(), call.getPhone(), R.drawable.callimg));
         }
 
 
