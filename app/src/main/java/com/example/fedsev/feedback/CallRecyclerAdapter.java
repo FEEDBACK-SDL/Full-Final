@@ -64,6 +64,7 @@ public class CallRecyclerAdapter extends RecyclerView.Adapter<CallRecyclerAdapte
             case 4:{
                 return "#ff5349";
             }
+
         }
         return "#4256f4";
     }

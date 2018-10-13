@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,12 +24,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import com.ebanx.swipebtn.OnStateChangeListener;
 import com.ebanx.swipebtn.SwipeButton;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 
@@ -37,6 +42,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import co.ceryle.segmentedbutton.SegmentedButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,15 +53,13 @@ public class Calling extends AppCompatActivity {
     ArrayList<RecycleData> finalList;
     ArrayList<String> listDataChild;
     Context context;
-
+    String service_id;
     BottomSheetBehavior sheetBehavior;
-
+    RadioButton radioButton1,radioButton2,radioButton3;
     TextView name,number;
+    RadioGroup radioGroup1,radioGroup2,radioGroup3;
     @BindView(R.id.bottom_sheet)
     LinearLayout layoutBottomSheet;
-    int flag;
-    adapter2 a2;
-    adapter a;
     LinearLayout linearLayout;
     View avi ;
     CallRecyclerAdapter callRecyclerAdapter;
@@ -64,10 +68,14 @@ public class Calling extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calling);
+        radioGroup1 = findViewById(R.id.radiogroup1);
+        radioGroup2 = findViewById(R.id.radiogroup2);
+        radioGroup3 = findViewById(R.id.radiogroup3);
         recyclerView = findViewById(R.id.recycle);
         context = getApplicationContext();
         b = savedInstanceState;
-        setContentView(R.layout.activity_calling);
+
         ButterKnife.bind(this);
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         name = findViewById(R.id.name);
@@ -98,7 +106,12 @@ public class Calling extends AppCompatActivity {
             }
         });
 
-
+        radioButton1 = findViewById(R.id.radiobutton11);
+        radioButton1.setChecked(true);
+        radioButton2 = findViewById(R.id.radiobutton21);
+        radioButton2.setChecked(true);
+        radioButton3 = findViewById(R.id.radiobutton31);
+        radioButton3.setChecked(true);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         sertData();
         prepareListData();
@@ -115,15 +128,28 @@ public class Calling extends AppCompatActivity {
             public void onStateChange(boolean active) {
                 if(active) {
                     if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                        check();
                         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         avi = findViewById(R.id.avi);
                         avi.setVisibility(View.VISIBLE);
                         linearLayout = findViewById(R.id.lock);
+                        SimpleRatingBar simpleRatingBar1 = findViewById(R.id.RatingBar1);
+                        simpleRatingBar1.setIndicator(true);
+                        SimpleRatingBar simpleRatingBar2 = findViewById(R.id.RatingBar2);
+                        simpleRatingBar1.setIndicator(true);
+                        SimpleRatingBar simpleRatingBar3 = findViewById(R.id.RatingBar3);
+                        simpleRatingBar1.setIndicator(true);
                         disableAllSettings(linearLayout,false);
                     }
                 }else {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                     linearLayout = findViewById(R.id.lock);
+                    SimpleRatingBar simpleRatingBar1 = findViewById(R.id.RatingBar1);
+                    simpleRatingBar1.setIndicator(false);
+                    SimpleRatingBar simpleRatingBar2 = findViewById(R.id.RatingBar2);
+                    simpleRatingBar1.setIndicator(false);
+                    SimpleRatingBar simpleRatingBar3 = findViewById(R.id.RatingBar3);
+                    simpleRatingBar1.setIndicator(false);
                     avi = findViewById(R.id.avi);
                     avi.setVisibility(View.GONE);
                     disableAllSettings(linearLayout,true);
@@ -132,6 +158,22 @@ public class Calling extends AppCompatActivity {
             }
         });
         prefetchData();
+    }
+    public void check(){
+        RadioButton rb = findViewById(radioGroup1.getCheckedRadioButtonId());
+        RadioButton rb1 = findViewById(radioGroup2.getCheckedRadioButtonId());
+        RadioButton rb2 = findViewById(radioGroup3.getCheckedRadioButtonId());
+        SimpleRatingBar simpleRatingBar1 = findViewById(R.id.RatingBar1);
+        simpleRatingBar1.setIndicator(true);
+        SimpleRatingBar simpleRatingBar2 = findViewById(R.id.RatingBar2);
+        simpleRatingBar1.setIndicator(true);
+        SimpleRatingBar simpleRatingBar3 = findViewById(R.id.RatingBar3);
+        simpleRatingBar1.setIndicator(true);
+
+    }
+
+    public void sendData(){
+
     }
     public void disableAllSettings(ViewGroup mGroup, Boolean visiblity) {
 
@@ -146,51 +188,33 @@ public class Calling extends AppCompatActivity {
         }
     }
     private void prefetchData(){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        API api = retrofit.create(API.class);
-        Call<DataFromServer> call = api.getData();
         avi = findViewById(R.id.avi);
         avi.setVisibility(View.VISIBLE);
-        call.enqueue(new Callback<DataFromServer>() {
-            @Override
-            public void onResponse(Call<DataFromServer> call, Response<DataFromServer> response) {
-                DataFromServer dataFromServer = response.body();
-                Log.d("asd",dataFromServer.getFname());
-                name.setText(dataFromServer.getFname() + " " + dataFromServer.getLname());
-                number.setText(dataFromServer.getPhone());
+        SyncData syncData = MainActivity.myAppDatabase.myDao().getData();
+        name.setText(syncData.getFirst_name() + " " + syncData.getLast_name());
+        number.setText(syncData.getPhone());
+        listDataChild = new ArrayList<>();
+        service_id = syncData.getService_id();
+        listDataChild.add(String.valueOf(syncData.getVehical_number()));
+        listDataChild.add(String.valueOf(syncData.getModel()));
+        listDataChild.add(String.valueOf(syncData.getL_service()));
+        listDataChild.add(String.valueOf(syncData.getN_service()));
+        listDataChild.add(String.valueOf(syncData.getKms()));
 
-                listDataChild = new ArrayList<>();
-                listDataChild.add(String.valueOf(dataFromServer.getService_id()));
-                listDataChild.add(String.valueOf(dataFromServer.getD_Service()));
-                listDataChild.add(String.valueOf(dataFromServer.getN_Service()));
-                listDataChild.add(String.valueOf(dataFromServer.getKms()));
+        prepareListData();
 
-                prepareListData();
+        callRecyclerAdapter = new CallRecyclerAdapter(finalList);
+        recyclerView.setAdapter(callRecyclerAdapter);
+        avi.setVisibility(View.GONE);
 
-                callRecyclerAdapter = new CallRecyclerAdapter(finalList);
-                recyclerView.setAdapter(callRecyclerAdapter);
-                avi.setVisibility(View.GONE);
-                FancyToast.makeText(Calling.this,"Success",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-            }
-
-            @Override
-            public void onFailure(Call<DataFromServer> call, Throwable t) {
-                FancyToast.makeText(Calling.this,"Server Error",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                //Toast.makeText(Calling.this,"Server Error",Toast.LENGTH_LONG).show();
-                avi.setVisibility(View.GONE);
-            }
-        });
 
     }
+
     private void sertData(){
         listDataHeader = new ArrayList<String>();
         listDataChild = new ArrayList<String>();
-        listDataHeader.add("Service ID");
+        listDataHeader.add("Vehical Number");
+        listDataHeader.add("Model");
         listDataHeader.add("Last Service");
         listDataHeader.add("Next Service");
         listDataHeader.add("Kilometers");
@@ -201,35 +225,43 @@ public class Calling extends AppCompatActivity {
         listDataChild.add("wait.... ");
         listDataChild.add("wait...");
         listDataChild.add("wait...");
+        listDataChild.add("wait...");
     }
     private void prepareListData() {
 
         finalList = new ArrayList<>();
         {
             RecycleData recycleData = new RecycleData();
-            recycleData.setHeader("Service ID");
+            recycleData.setHeader("Vehical Number");
             recycleData.setFooter(listDataChild.get(0));
             recycleData.setColor(1);
             finalList.add(recycleData);
         }
         {
+            RecycleData recycleData4 = new RecycleData();
+            recycleData4.setHeader("Vehical Model");
+            recycleData4.setFooter(listDataChild.get(1));
+            recycleData4.setColor(5);
+            finalList.add(recycleData4);
+        }
+        {
             RecycleData recycleData1 = new RecycleData();
             recycleData1.setHeader("Last Service");
-            recycleData1.setFooter(listDataChild.get(1));
+            recycleData1.setFooter(listDataChild.get(2));
             recycleData1.setColor(2);
             finalList.add(recycleData1);
         }
         {
             RecycleData recycleData2 = new RecycleData();
             recycleData2.setHeader("Next Service");
-            recycleData2.setFooter(listDataChild.get(2));
+            recycleData2.setFooter(listDataChild.get(3));
             recycleData2.setColor(3);
             finalList.add(recycleData2);
         }
         {
             RecycleData recycleData3 = new RecycleData();
             recycleData3.setHeader("Kilometers");
-            recycleData3.setFooter(listDataChild.get(3));
+            recycleData3.setFooter(listDataChild.get(4));
             recycleData3.setColor(4);
             finalList.add(recycleData3);
         }
@@ -242,81 +274,41 @@ public class Calling extends AppCompatActivity {
         String finalnumber = String.valueOf(number.getText());
         Intent callintent = new Intent(Intent.ACTION_CALL);
         callintent.setData(Uri.parse("tel:" + finalnumber));
+        Log.d("Asd","call");
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
 
-        if (ActivityCompat.checkSelfPermission(Calling.this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-            return;
-        }
-        startActivity(callintent);
-    }
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    1);
 
-
-    class adapter extends BaseAdapter {
-        private int mLastPosition;
-
-        @Override
-        public int getCount() {
-            return listDataHeader.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            if (view == null) {
-                LayoutInflater infalInflater = (LayoutInflater) context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = infalInflater.inflate(R.layout.list_layout, null);
+            // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        } else {
+            //You already have permission
+            try {
+                startActivity(callintent);
+            } catch(SecurityException e) {
+                e.printStackTrace();
             }
-            TextView textView = (TextView) view.findViewById(R.id.footer);
-            //Log.d("asd",String.valueOf(i) + String.valueOf(flag));
-            if (flag == 0){
-                textView.setText(listDataHeader.get(i));}
-            else{
-                textView.setText(listDataChild.get(i));}
-            return view;
         }
     }
-    class adapter2 extends BaseAdapter {
-        private int mLastPosition;
 
-        @Override
-        public int getCount() {
-            return listDataHeader.size();
-        }
 
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
 
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            if (view == null) {
-                LayoutInflater infalInflater = (LayoutInflater) context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = infalInflater.inflate(R.layout.list_layout, null);
-            }
-            TextView textView = (TextView) view.findViewById(R.id.header);
-            // Log.d("asd",String.valueOf(i) + String.valueOf(flag));
-
-            textView.setText(listDataChild.get(i));
-            return view;
-        }
-    }
     public void newl(View v){
+
+        RadioButton rb = findViewById(R.id.button21);
+        if(rb.isChecked()){
+
+
+        }
+        else{
+            MainActivity.myAppDatabase.myDao().updateCall(service_id,2);
+        }
+
         Intent i = getIntent();
         finish();
         startActivity(i);

@@ -164,6 +164,7 @@
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                                    android:id="@+id/RatingBar1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:srb_starSize="40dp"
@@ -203,12 +204,14 @@
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
+                                    android:id="@+id/radiogroup1"
                                     android:orientation="horizontal"
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_height="match_parent">
 
                                     <RadioButton
+                                        android:id="@+id/radiobutton11"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -216,6 +219,7 @@
                                         android:textSize="25dp"
                                         android:text="yes"/>
                                     <RadioButton
+                                        android:id="@+id/radiobutton12"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -251,6 +255,7 @@
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                                    android:id="@+id/RatingBar2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:srb_starSize="40dp"
@@ -290,12 +295,14 @@
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
+                                    android:id="@+id/radiogroup2"
                                     android:orientation="horizontal"
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_height="match_parent">
 
                                     <RadioButton
+                                        android:id="@+id/radiobutton21"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -303,6 +310,7 @@
                                         android:textSize="25dp"
                                         android:text="yes"/>
                                     <RadioButton
+                                        android:id="@+id/radiobutton22"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -340,6 +348,7 @@
                                     android:textAlignment="center"
                                     />
                                 <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                                    android:id="@+id/RatingBar3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:srb_starSize="40dp"
@@ -380,12 +389,14 @@
                                     android:textAlignment="center"
                                     />
                                 <RadioGroup
+                                    android:id="@+id/radiogroup3"
                                     android:orientation="horizontal"
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_height="match_parent">
 
                                     <RadioButton
+                                        android:id="@+id/radiobutton31"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -393,6 +404,7 @@
                                         android:textSize="25dp"
                                         android:text="yes"/>
                                     <RadioButton
+                                        android:id="@+id/radiobutton32"
                                         android:outlineAmbientShadowColor="@color/colorAccent"
                                         android:layout_width="match_parent"
                                         android:textColor="#000"

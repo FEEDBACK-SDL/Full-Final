@@ -70,6 +70,7 @@ public class Login extends AppCompatActivity {
                @Override
                public void onFailure(Call<String> call, Throwable t) {
                    Log.d("asd","error");
+                   avi.setVisibility(View.GONE);
                }
            });
             avi.setVisibility(View.GONE);
@@ -149,21 +150,21 @@ public void syncData() {
                 ArrayList<SyncData> arrayList = response.body();
                 for (SyncData syncData : arrayList) {
                     Log.d("asd", syncData.getModel());
-                    CallsRoom callsRoom = new CallsRoom();
-                    callsRoom.setName(syncData.getFirst_name() + " " + syncData.getLast_name());
-                    callsRoom.setPhoneNo(syncData.getPhone());
+
                     try {
+                        syncData.setCallisdone(0);
                         MainActivity.myAppDatabase.myDao().addSyncData(syncData);
                     }
                     catch (Exception e){
 
                     }
                 }
+                avi.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ArrayList<SyncData>> call, Throwable t) {
-
+                avi.setVisibility(View.GONE);
             }
         });
     }
