@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -301,6 +302,8 @@ public class Calling extends AppCompatActivity {
 
         RadioButton rb = findViewById(R.id.button21);
         if(rb.isChecked()){
+            SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
+            String token = sharedPreferences.getString("token","");
             RadioButton rb1 = findViewById(radioGroup1.getCheckedRadioButtonId());
             RadioButton rb2 = findViewById(radioGroup2.getCheckedRadioButtonId());
             RadioButton rb3 = findViewById(radioGroup3.getCheckedRadioButtonId());
@@ -328,10 +331,31 @@ public class Calling extends AppCompatActivity {
             DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter dff1 = DateTimeFormatter.ofPattern("HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            callStatEntity.setTime(dff1.format(now));
-            callStatEntity.setDate1(dff.format(now));
+            String date = dff.format(now);
+            String time = dff1.format(now);
+            callStatEntity.setTime(time);
+            callStatEntity.setDate1(date);
             MainActivity.myAppDatabase.myDao().updateCall(syncData.getService_id(),1);
             MainActivity.myAppDatabase.myDao().addrecord(callStatEntity);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(API.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            avi = findViewById(R.id.avi);
+            avi.setVisibility(View.VISIBLE);
+            API api = retrofit.create(API.class);
+            Call<String> call = api.sendData(token,String.valueOf(a1),String.valueOf(a2),String.valueOf(a3),String.valueOf(a4),String.valueOf(a5),String.valueOf(a6),syncData.getCust_id(), syncData.getService_id(),date,time,String.valueOf(cr));
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    Log.d("asd",response.body());
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+
+                }
+            });
             Log.d("values",String.valueOf(a1) + String.valueOf(a2) + String.valueOf(a3) + String.valueOf(a4) + String.valueOf(a5) + String.valueOf(a6) + String.valueOf(cr));
         }
         else{

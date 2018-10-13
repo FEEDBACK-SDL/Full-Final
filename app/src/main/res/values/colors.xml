@@ -22,5 +22,8 @@
         <color name="icons">#FFFFFF</color>
         <color name="divider">#BDBDBD</color>
 
+        <color name="textheader">#673AB7</color>
+        <color name="decimals">#673AB7</color>
+
 
 </resources>
