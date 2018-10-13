@@ -75,7 +75,7 @@ public class CallStat extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String[] dates = {"Yesterday", "Last 3 Days","Last 7 Days", "Last 15 Days", "Last 30 Days" };
+                String[] dates = {"Today", "Yesterday", "Last 3 Days","Last 7 Days", "Last 15 Days", "Last 30 Days" };
                 int po = (int) parent.getItemIdAtPosition(position);
                 String d = dates[po];
                 filter_process(po);
@@ -117,7 +117,7 @@ public class CallStat extends Fragment {
 
             LocalDate d = LocalDate.parse(p.getDate1());
 
-            if(d.isAfter(date) && d.isBefore(LocalDate.now())){
+            if(d.isAfter(date) ){
                 System.out.println("Check");
                 newlist.add(p);
             }
@@ -141,24 +141,26 @@ public class CallStat extends Fragment {
         int days = 0;
 
         switch(day){
-
             case 0:
+                days = 0;
+                break;
+            case 1:
                 days = 2;
                 break;
 
-            case 1:
+            case 2:
                 days = 4;
                 break;
 
-            case 2:
+            case 3:
                 days = 8;
                 break;
 
-            case 3:
+            case 4:
                 days = 16;
                 break;
 
-            case 4:
+            case 5:
                 days = 31;
                 break;
 

@@ -37,6 +37,8 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -57,6 +59,7 @@ public class Calling extends AppCompatActivity {
     BottomSheetBehavior sheetBehavior;
     RadioButton radioButton1,radioButton2,radioButton3;
     TextView name,number;
+    SyncData syncData;
     RadioGroup radioGroup1,radioGroup2,radioGroup3;
     @BindView(R.id.bottom_sheet)
     LinearLayout layoutBottomSheet;
@@ -160,21 +163,16 @@ public class Calling extends AppCompatActivity {
         prefetchData();
     }
     public void check(){
-        RadioButton rb = findViewById(radioGroup1.getCheckedRadioButtonId());
-        RadioButton rb1 = findViewById(radioGroup2.getCheckedRadioButtonId());
-        RadioButton rb2 = findViewById(radioGroup3.getCheckedRadioButtonId());
+
         SimpleRatingBar simpleRatingBar1 = findViewById(R.id.RatingBar1);
         simpleRatingBar1.setIndicator(true);
         SimpleRatingBar simpleRatingBar2 = findViewById(R.id.RatingBar2);
-        simpleRatingBar1.setIndicator(true);
+        simpleRatingBar2.setIndicator(true);
         SimpleRatingBar simpleRatingBar3 = findViewById(R.id.RatingBar3);
-        simpleRatingBar1.setIndicator(true);
+        simpleRatingBar3.setIndicator(true);
 
     }
 
-    public void sendData(){
-
-    }
     public void disableAllSettings(ViewGroup mGroup, Boolean visiblity) {
 
         int itotal = mGroup.getChildCount();
@@ -191,6 +189,7 @@ public class Calling extends AppCompatActivity {
         avi = findViewById(R.id.avi);
         avi.setVisibility(View.VISIBLE);
         SyncData syncData = MainActivity.myAppDatabase.myDao().getData();
+        this.syncData = syncData;
         name.setText(syncData.getFirst_name() + " " + syncData.getLast_name());
         number.setText(syncData.getPhone());
         listDataChild = new ArrayList<>();
@@ -302,8 +301,38 @@ public class Calling extends AppCompatActivity {
 
         RadioButton rb = findViewById(R.id.button21);
         if(rb.isChecked()){
-            
-
+            RadioButton rb1 = findViewById(radioGroup1.getCheckedRadioButtonId());
+            RadioButton rb2 = findViewById(radioGroup2.getCheckedRadioButtonId());
+            RadioButton rb3 = findViewById(radioGroup3.getCheckedRadioButtonId());
+            SimpleRatingBar simpleRatingBar1 = findViewById(R.id.RatingBar1);
+            SimpleRatingBar simpleRatingBar2 = findViewById(R.id.RatingBar2);
+            SimpleRatingBar simpleRatingBar3 = findViewById(R.id.RatingBar3);
+            SimpleRatingBar custr = findViewById(R.id.crating);
+            int a1 = (int) simpleRatingBar1.getRating();
+            int a2 = 0;
+            if(rb1.getText().toString().trim().equals("yes"))
+                a2 = 1;
+            int a3 = (int) simpleRatingBar2.getRating();
+            int a4 = 0;
+            if(rb2.getText().toString().trim().equals("yes"))
+                a4 = 1;
+            int a5 = (int) simpleRatingBar3.getRating();
+            int a6 = 0;
+            if(rb3.getText().toString().trim().equals("yes"))
+                a6 = 1;
+            int cr = (int) custr.getRating();
+            CallStatEntity callStatEntity = new CallStatEntity();
+            callStatEntity.setName(syncData.getFirst_name() + " " + syncData.getLast_name());
+            callStatEntity.setNumber(syncData.getPhone());
+            callStatEntity.setServiceid(Integer.valueOf(syncData.getService_id()));
+            DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dff1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            callStatEntity.setTime(dff1.format(now));
+            callStatEntity.setDate1(dff.format(now));
+            MainActivity.myAppDatabase.myDao().updateCall(syncData.getService_id(),1);
+            MainActivity.myAppDatabase.myDao().addrecord(callStatEntity);
+            Log.d("values",String.valueOf(a1) + String.valueOf(a2) + String.valueOf(a3) + String.valueOf(a4) + String.valueOf(a5) + String.valueOf(a6) + String.valueOf(cr));
         }
         else{
             MainActivity.myAppDatabase.myDao().updateCall(service_id,2);
