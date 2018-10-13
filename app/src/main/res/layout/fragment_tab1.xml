@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingRight="8dp"
+    android:background="@drawable/boilercolor"
     tools:context=".Tab1">
 
 
@@ -63,7 +64,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="72dp"
         app:cardCornerRadius="2dp">
 
         <RelativeLayout
@@ -90,9 +91,9 @@
                     android:layout_gravity="center_horizontal"
                     android:drawableLeft="@drawable/timeleft"
                     android:gravity="center"
-                    android:text="Working Hours Left"
+                    android:text="  WORKING HOURS LEFT"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="28dp" />
+                    android:textSize="18dp" />
 
 
             </android.support.v7.widget.CardView>
@@ -131,109 +132,131 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/c3"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@+id/c3"
-        >
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="9dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="10dp"
-            android:orientation="horizontal">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c5"
-                android:layout_marginTop="35dp">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Target"
-                    android:drawableLeft="@drawable/target"
-
-                    android:layout_marginTop="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:visibility="visible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="30"
-                    android:textSize="30dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_gravity="center_horizontal"
-                    />
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="108dp"
-                android:layout_marginTop="35dp">
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
-                    android:text="Remaining"
-                    android:drawableLeft="@drawable/remaining"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="30"
-                    android:textSize="30dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="35dp"/>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="225dp"
-                android:layout_marginTop="35dp">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="18dp"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/successfull"
-                    android:text="Complete"
-                    android:textAppearance="@style/TextAppearance.AppCompat" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="35dp"
-                    android:text="30"
-                    android:textSize="30dp" />
-            </android.support.v7.widget.CardView>
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="Calls"
-                android:textSize="30dp"
+                android:layout_gravity="center_horizontal"
                 android:drawableLeft="@drawable/calls"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
-        </RelativeLayout>
+                android:text="Calls"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30dp" />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/c5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="28dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@drawable/target"
+                        android:paddingRight="30dp"
+
+                        android:text="Target"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="35dp"
+                        android:text="30"
+                        android:textSize="30dp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@drawable/remaining"
+                        android:paddingRight="10dp"
+                        android:text="Remaining"
+                        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="35dp"
+                        android:text="30"
+                        android:textSize="30dp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@drawable/successfull"
+                        android:paddingRight="18dp"
+                        android:text="Complete"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="35dp"
+                        android:text="30"
+                        android:textSize="30dp" />
+                </android.support.v7.widget.CardView>
+
+
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
 

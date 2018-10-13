@@ -7,10 +7,20 @@
 
     <color name="radio_button_unselected_color">@android:color/transparent</color>
     <color name="ProfileIconColor">#FF000000</color>
-    <color name="colorPrimary">#1E2538</color>
-    <color name="colorPrimaryDark">#0E121B</color>
-    <color name="colorAccent">#5B1566</color>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorAccent">#E040FB</color>
     <color name="colorBackground">#151B29</color>
     <color name="colorYellow">#F5FA55</color>
     <color name="colorRed">#FF0000</color>
+
+
+
+        <color name="primary_light">#D1C4E9</color>
+        <color name="primary_text">#212121</color>
+        <color name="secondary_text">#757575</color>
+        <color name="icons">#FFFFFF</color>
+        <color name="divider">#BDBDBD</color>
+
+
 </resources>
