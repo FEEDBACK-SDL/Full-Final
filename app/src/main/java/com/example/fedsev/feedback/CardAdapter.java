@@ -47,7 +47,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
         holder.textName.setText(il.getName());
         holder.textServiceid.setText(String.valueOf(il.getServiceid()));
-        holder.textNumber.setText(String.valueOf(il.getNumber()));
+        holder.textNumber.setText(il.getNumber());
         holder.textTime.setText(il.getTime());
         holder.textDate1.setText(il.getDate1());
 

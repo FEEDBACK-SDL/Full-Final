@@ -6,12 +6,12 @@ public class InfoCard {
 
     private String name;
     private int serviceid;
-    private int number; //change to long if error occurs
+    private String number; //change to long if error occurs
     private String time;
     private String date1;
     private LocalDate d;
 
-    public InfoCard(String name, int serviceid, int number, String time, String date1) {
+    public InfoCard(String name, int serviceid, String number, String time, String date1) {
         this.name = name;
         this.serviceid = serviceid;
         this.number = number;
@@ -28,7 +28,7 @@ public class InfoCard {
         return serviceid;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 

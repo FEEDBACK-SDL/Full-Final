@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_bright"
             android:orientation="vertical"
             android:padding="2dp">
 
@@ -32,9 +31,10 @@
 
                 <TextView
                     android:id="@+id/textViewfieldname"
-                    android:layout_width="190dp"
-                    android:layout_height="35dp"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
                     android:drawableLeft="@drawable/person"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
@@ -43,14 +43,16 @@
 
                 <TextView
                     android:id="@+id/textViewname"
-                    android:layout_width="match_parent"
+                    android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-
+                    android:textAppearance="@style/TextAppearance.AppCompat"
                     android:background="@drawable/border_card_text"
-                    android:text="AAAAAAAAAAAAAA"
+                    android:text="Ayush Gupta"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
                     android:textAlignment="center"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -66,6 +68,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/serviceid"
                     android:paddingHorizontal="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
 
                     android:paddingVertical="4dp"
                     android:text=" Service id"
@@ -76,9 +79,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingLeft="55dp"
                     android:background="@drawable/border_card_text"
-                    android:text="1234567"
-                    android:textAlignment="center"
+                    android:text="901"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -97,6 +103,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/phone"
                     android:paddingHorizontal="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
 
                     android:paddingVertical="4dp"
                     android:text=" Number   "
@@ -109,6 +116,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/border_card_text"
                     android:text="1234567890"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+
                     android:textAlignment="center"
                     android:textSize="24sp" />
 
@@ -126,6 +135,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/time"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+
                     android:paddingHorizontal="10dp"
 
                     android:paddingVertical="4dp"
@@ -139,6 +150,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/border_card_text"
                     android:text="20:10:45"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+
                     android:textAlignment="center"
                     android:textSize="24sp" />
 
@@ -155,6 +168,8 @@
                     android:layout_width="77dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+
                     android:drawableLeft="@drawable/date"
                     android:paddingHorizontal="10dp"
 
@@ -169,6 +184,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/border_card_text"
                     android:text="2018/09/21"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textAlignment="center"
                     android:textSize="24sp" />
 

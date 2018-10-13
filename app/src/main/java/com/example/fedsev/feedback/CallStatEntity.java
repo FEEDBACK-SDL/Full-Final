@@ -11,7 +11,7 @@ public class CallStatEntity {
     @PrimaryKey
     private int serviceid;
 
-    private int number; //change to long if error occurs
+    private String number; //change to long if error occurs
 
     private String time;
 
@@ -25,7 +25,7 @@ public class CallStatEntity {
         return serviceid;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -45,7 +45,7 @@ public class CallStatEntity {
         this.serviceid = serviceid;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

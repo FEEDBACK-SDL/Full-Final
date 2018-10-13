@@ -39,27 +39,41 @@ public class Profile extends Fragment {
     private boolean editMode = false;
     private final static int MaxRating = 5;
 
-    CallsRoom call;
+//    CallsRoom call;
+//    public Profile()
+//    {
+//        call = new CallsRoom();
+//    }
+//
+//    public void setColumn(int id, String name, String phoneNo)
+//    {
+//        call.setId(id);
+//        call.setName(name);
+//        call.setPhoneNo(phoneNo);
+//
+//    }
+
+    CallStatEntity call;
     public Profile()
     {
-        call = new CallsRoom();
+        call = new CallStatEntity();
     }
-
-    public void setColumn(int id, String name, String phoneNo)
+    public void setColumn(int serviceid, String name, String number, String time, String date1)
     {
-        call.setId(id);
+        call.setServiceid(serviceid);
         call.setName(name);
-        call.setPhoneNo(phoneNo);
+        call.setNumber(number);
+        call.setTime(time);
+        call.setDate1(date1);
 
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_profile , container, false);
 
-//        setColumn(1,"David James" , "9123456780");
-//        MainActivity.myAppDatabase.myDao().addCalls(call);
+//        setColumn(851,"Ayush" , "9028600226", "20:00:36", "2018-09-25");
+//        MainActivity.myAppDatabase.myDao().addrecord(call);
 //        setColumn(2,"Steve Smith" , "12345678901");
 //        MainActivity.myAppDatabase.myDao().addCalls(call);
 
