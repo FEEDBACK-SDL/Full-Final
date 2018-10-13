@@ -25,7 +25,7 @@ public interface MyDao
     public SyncData getData();
 
 
-    @Query("select * from SyncData")
+    @Query("select * from SyncData where callisdone = 0 or callisdone = 2")
     public List<SyncData> syncData();
 
     @Query("Select * from CallStatEntity")
