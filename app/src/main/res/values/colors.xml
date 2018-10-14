@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="radio_button_selected_color">#00B2EE</color>
+    <color name="radio_button_selected_color">#619253</color>
 
     <color name="radio_button_unselected_color">@android:color/transparent</color>
     <color name="ProfileIconColor">#FF000000</color>
     <color name="colorPrimary">#3b2541</color>
     <color name="colorPrimaryDark">#27112D</color>
-    <color name="colorAccent">#E040FB</color>
+    <color name="colorAccent">#2b4125</color>
     <color name="colorBackground">#151B29</color>
     <color name="colorYellow">#F5FA55</color>
     <color name="colorRed">#FF0000</color>

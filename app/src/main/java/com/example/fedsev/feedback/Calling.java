@@ -239,35 +239,35 @@ public class Calling extends AppCompatActivity {
             RecycleData recycleData = new RecycleData();
             recycleData.setHeader("Vehical Number");
             recycleData.setFooter(listDataChild.get(0));
-            recycleData.setColor(1);
+            recycleData.setColor(5);
             finalList.add(recycleData);
         }
         {
             RecycleData recycleData4 = new RecycleData();
             recycleData4.setHeader("Vehical Model");
             recycleData4.setFooter(listDataChild.get(1));
-            recycleData4.setColor(5);
+            recycleData4.setColor(4);
             finalList.add(recycleData4);
         }
         {
             RecycleData recycleData1 = new RecycleData();
             recycleData1.setHeader("Last Service");
             recycleData1.setFooter(listDataChild.get(2));
-            recycleData1.setColor(2);
+            recycleData1.setColor(3);
             finalList.add(recycleData1);
         }
         {
             RecycleData recycleData2 = new RecycleData();
             recycleData2.setHeader("Next Service");
             recycleData2.setFooter(listDataChild.get(3));
-            recycleData2.setColor(3);
+            recycleData2.setColor(2);
             finalList.add(recycleData2);
         }
         {
             RecycleData recycleData3 = new RecycleData();
             recycleData3.setHeader("Kilometers");
             recycleData3.setFooter(listDataChild.get(4));
-            recycleData3.setColor(4);
+            recycleData3.setColor(1);
             finalList.add(recycleData3);
         }
         //hello

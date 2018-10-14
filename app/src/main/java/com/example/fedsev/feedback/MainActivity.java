@@ -1,7 +1,9 @@
 package com.example.fedsev.feedback;
 
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.time.LocalDateTime;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Tab1()).commit();
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "recordsdb").allowMainThreadQueries().build();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.fragment_container);
     }
 
     @Override
@@ -99,6 +104,17 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.profile){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile()).commit();
 
+        }
+        else if (id == R.id.logout){
+            SharedPreferences sharedPreferences = getSharedPreferences("private_data",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            LocalDateTime now = LocalDateTime.now();
+            Long et = sharedPreferences.getLong("timeend",0);
+            editor.putLong("rt",et - (now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000));
+            editor.putString("token","");
+            editor.apply();
+            Intent i = new Intent(MainActivity.this, Login.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

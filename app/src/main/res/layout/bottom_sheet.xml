@@ -71,8 +71,8 @@
         app:srb_rating="3"
         app:srb_stepSize="1"
         android:layout_gravity="center|center_horizontal"
-        app:srb_borderColor="#752288"
-        app:srb_fillColor="#6C1780"
+        app:srb_borderColor="#80a775"
+        app:srb_fillColor="#619253"
 
         />
 

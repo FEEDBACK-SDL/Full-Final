@@ -3,7 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
+
+        <item
+            android:title="Today's Work"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:id="@+id/stats"/>
+
         <item
             android:id="@+id/calls"
             android:icon="@drawable/callsmadenav"
@@ -15,14 +22,14 @@
             android:id="@+id/tobedone"/>
 
         <item
-            android:title="Statistics"
-            android:icon="@drawable/ic_history_black_24dp"
-            android:id="@+id/stats"/>
-
-        <item
             android:id="@+id/profile"
             android:icon="@drawable/profile"
             android:title="Profile" />
+
+        <item
+            android:title="Logout"
+            android:icon="@drawable/logout"
+            android:id="@+id/logout"/>
 
     </group>
 

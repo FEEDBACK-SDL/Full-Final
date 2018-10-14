@@ -53,19 +53,19 @@ public class CallRecyclerAdapter extends RecyclerView.Adapter<CallRecyclerAdapte
     public String getColor(int value){
         switch (value){
             case 1:{
-                return "#0066cc";
+                return "#A24936";
             }
             case 2:{
-                return "#ffae42";
+                return "#D36135";
             }
             case 3:{
-                return "#3f26bf";
+                return "#395C6B";
             }
             case 4:{
-                return "#ff5349";
+                return "#68B0AB";
             }
 
         }
-        return "#4256f4";
+        return "#005B41";
     }
 }

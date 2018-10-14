@@ -109,6 +109,11 @@ public class Login extends AppCompatActivity {
                     }
                     else {
                         save(ld);
+                        SharedPreferences sharedPreferences = getSharedPreferences("private_data",Context.MODE_PRIVATE);
+                        LocalDateTime now = LocalDateTime.now();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putLong("timeend",now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000 + sharedPreferences.getLong("rt",0));
+                        editor.apply();
                         FancyToast.makeText(Login.this,ld.getToken(),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                         avi.setVisibility(View.GONE);
                         goNext(view);
@@ -135,6 +140,7 @@ public class Login extends AppCompatActivity {
         editor.putString("contact",ld.getContact());
         editor.putString("email",ld.getEmail());
         editor.putInt("rating",ld.getRating());
+
         editor.apply();
     }
 public void syncData() {
@@ -155,8 +161,11 @@ public void syncData() {
     Log.d(nowdate,ldate);
     if (!token.equals("") && date2.after(date1) ) {
         Log.d(nowdate,ldate);
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("date",nowdate);
+        editor.putLong("rt",0);
+        editor.putLong("timeend",now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000 +  30*60*1000);
         editor.apply();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)

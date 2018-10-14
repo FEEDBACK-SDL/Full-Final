@@ -2,6 +2,7 @@ package com.example.fedsev.feedback;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.shashank.sony.fancytoastlib.FancyToast;
+
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 
@@ -20,7 +24,14 @@ public class Tab1 extends Fragment
 {
     boolean flag = false;
     private View v;
-
+    private long  timeCountInMilliSeconds = 30*60*1000;
+    private int maxtime = 1800;
+    private ProgressBar progressBarCircle;
+    private EditText editTextMinute;
+    private TextView textViewTime;
+    private CountDownTimer countDownTimer;
+    private TextView complete;
+    private TextView remaining;
     public Tab1()
     {
         // Required empty public constructor
@@ -33,6 +44,13 @@ public class Tab1 extends Fragment
         v = inflater.inflate(R.layout.fragment_tab1, container, false);
         // method call to initialize the views
         initViews();
+        LocalDateTime now = LocalDateTime.now();
+        FancyToast.makeText(getContext(),String.valueOf(MainActivity.myAppDatabase.myDao().getcount()),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("private_data", Context.MODE_PRIVATE);
+        timeCountInMilliSeconds = sharedPreferences.getLong("timeend", 0) - (now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000) ;
+        remaining.setText(String.valueOf(MainActivity.myAppDatabase.myDao().getcount()));
+        complete.setText(String.valueOf(15 - MainActivity.myAppDatabase.myDao().getcount()));
+        setProgressBarValues();
         startCountDownTimer();
 
 
@@ -40,12 +58,6 @@ public class Tab1 extends Fragment
     }
 
 
-    private long  timeCountInMilliSeconds = 60000;
-
-    private ProgressBar progressBarCircle;
-    private EditText editTextMinute;
-    private TextView textViewTime;
-    private CountDownTimer countDownTimer;
 
 
 
@@ -56,6 +68,8 @@ public class Tab1 extends Fragment
     private void initViews() {
         progressBarCircle = (ProgressBar) v.findViewById(R.id.progressBarCircle);
         textViewTime = (TextView) v.findViewById(R.id.textViewTime);
+        remaining = (TextView) v.findViewById(R.id.remaining);
+        complete = (TextView) v.findViewById(R.id.complete);
 //        imageViewReset = (ImageView) findViewById(R.id.imageViewReset);
 //        imageViewStartStop = (ImageView) findViewById(R.id.imageViewStartStop);
     }
@@ -76,6 +90,7 @@ public class Tab1 extends Fragment
                 public void onTick(long millisUntilFinished) {
 
                     textViewTime.setText(hmsTimeFormatter(millisUntilFinished));
+
 
                     progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
 
@@ -111,8 +126,8 @@ public class Tab1 extends Fragment
      */
     private void setProgressBarValues() {
 
-        progressBarCircle.setMax((int) timeCountInMilliSeconds / 1000);
-        progressBarCircle.setProgress((int) timeCountInMilliSeconds / 1000);
+        progressBarCircle.setMax(maxtime);
+        progressBarCircle.setProgress((int) timeCountInMilliSeconds / 100);
     }
 
 
