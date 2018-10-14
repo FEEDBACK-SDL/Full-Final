@@ -12,7 +12,12 @@ import android.widget.Toast;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -135,7 +140,24 @@ public class Login extends AppCompatActivity {
 public void syncData() {
     SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
     String token = sharedPreferences.getString("token", "");
-    if (!token.equals("")) {
+    String ldate = sharedPreferences.getString("date","2018-10-13");
+    DateTimeFormatter dff = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    LocalDateTime now = LocalDateTime.now();
+    String nowdate = dff.format(now);
+    Date date1 = null,date2 = null;
+    try {
+        date1 = sdf.parse(ldate);
+        date2 = sdf.parse(nowdate);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    Log.d(nowdate,ldate);
+    if (!token.equals("") && date2.after(date1) ) {
+        Log.d(nowdate,ldate);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("date",nowdate);
+        editor.apply();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
