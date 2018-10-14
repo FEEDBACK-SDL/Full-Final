@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/boilercolor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,8 +13,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        app:cardBackgroundColor="@android:color/background_light"
+        android:layout_marginTop="7dp"
+        app:cardBackgroundColor="#F6F4F7"
         app:cardCornerRadius="3dp">
 
         <RelativeLayout
@@ -43,8 +44,8 @@
                         android:autoSizeTextType="uniform"
                         android:paddingVertical="12dp"
                         android:text="SortBy"
-
                         android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
                         android:textSize="30sp"
                         android:textStyle="bold" />
 
@@ -80,6 +81,7 @@
                 android:elevation="8dp"
                 android:clipToPadding="false"
                 android:clipChildren="false"
+                app:cardBackgroundColor="#F6F4F7"
                 app:cardElevation="5dp"
                 >
 
@@ -88,7 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="30"
-
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textSize="38sp" />
 
@@ -106,9 +109,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="68dp"
         android:paddingVertical="5dp"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="3dp" />
 
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="7dp"
-        app:cardBackgroundColor="@color/cardcolor"
+                    app:cardBackgroundColor="#EFE7F3"
 
         app:cardCornerRadius="2dp" >
 
@@ -31,30 +31,28 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
                 android:paddingLeft="50dp"
                 android:paddingTop="3dp"
-                android:textAlignment="center"
-                android:textFontWeight="150"
-                android:text="WELCOME "
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="#000000"
-                android:textSize="28dp" />
+                android:layout_centerVertical="true"
+                android:textColor="@color/textheader"
+
+                android:text="Welcome "
+                android:textSize="25dp"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="3dp"
+                android:paddingBottom="5dp"
                 android:layout_centerVertical="true"
                 android:paddingLeft="20dp"
-                android:textSize="28dp"
-                android:textStyle="bold"
+                android:textSize="25dp"
                 android:layout_toRightOf="@+id/textView8"
                 android:gravity="center_horizontal"
-                android:textColor="#000000"
-                android:text="AYUSH"
+                android:textColor="@color/textheader"
+                android:text="Mr.Ayush"
                 android:textAppearance="@style/TextAppearance.AppCompat" />
         </RelativeLayout>
 
@@ -69,7 +67,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="72dp"
-        app:cardBackgroundColor="@color/cardcolor"
+                            app:cardBackgroundColor="#EFE7F3"
 
         app:cardCornerRadius="2dp">
 
@@ -83,8 +81,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#F6F4F7"
-
+            
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
@@ -98,8 +95,8 @@
                     android:layout_gravity="center_horizontal"
                     android:drawableLeft="@drawable/timeleft"
                     android:gravity="center"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
+                    android:textColor="@color/textheader"
+
                     android:text="  WORKING HOURS LEFT"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="20dp" />
@@ -143,7 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/c3"
-        app:cardBackgroundColor="@color/cardcolor"
+                            app:cardBackgroundColor="#EFE7F3"
 
         android:layout_marginBottom="20dp"
         android:layout_marginStart="8dp"
@@ -163,7 +160,7 @@
                 android:layout_gravity="center_horizontal"
                 android:drawableLeft="@drawable/calls"
                 android:text="Calls"
-                android:textColor="#000000"
+                android:textColor="@color/textheader"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="30dp" />
 
@@ -180,7 +177,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
-                    app:cardBackgroundColor="#F6F4F7"
+                
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -197,7 +195,7 @@
                             android:drawableLeft="@drawable/target"
                             android:textSize="16dp"
                             android:textColor="@color/textheader"
-                            android:textStyle="bold"
+
                             android:text="Target"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:visibility="visible" />
@@ -209,7 +207,6 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/decimals"
                             android:text="30"
-                            android:textStyle="bold"
                             android:textSize="30dp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -218,8 +215,7 @@
                     android:id="@+id/cardView"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
-
-                    app:cardBackgroundColor="#F6F4F7"
+                
 
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
@@ -238,7 +234,7 @@
                             android:drawableLeft="@drawable/remaining"
                             android:text="Remaining"
                             android:textColor="@color/textheader"
-                            android:textStyle="bold"
+
                             android:textSize="16dp"
                             android:textAppearance="@style/TextAppearance.AppCompat" />
 
@@ -248,7 +244,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/decimals"
-                            android:textStyle="bold"
+
                             android:text="30"
                             android:textSize="30dp" />
                     </LinearLayout>
@@ -261,8 +257,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_marginRight="10dp"
-                    app:cardBackgroundColor="#F6F4F7"
-
+                
 
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
@@ -281,7 +276,7 @@
                             android:drawableLeft="@drawable/successfull"
                             android:text="Complete"
                             android:textColor="@color/textheader"
-                            android:textStyle="bold"
+
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="16dp" />
 
@@ -291,7 +286,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/decimals"
-                            android:textStyle="bold"
+
                             android:text="30"
                             android:textSize="30dp" />
                     </LinearLayout>

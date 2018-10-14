@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -79,7 +81,10 @@ public class Calling extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycle);
         context = getApplicationContext();
         b = savedInstanceState;
-
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         ButterKnife.bind(this);
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         name = findViewById(R.id.name);

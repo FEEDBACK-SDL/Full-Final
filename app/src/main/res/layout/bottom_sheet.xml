@@ -71,14 +71,14 @@
         app:srb_rating="3"
         app:srb_stepSize="1"
         android:layout_gravity="center|center_horizontal"
-        app:srb_borderColor="#00B2BE"
-        app:srb_fillColor="#00B2EE"
+        app:srb_borderColor="#752288"
+        app:srb_fillColor="#6C1780"
 
         />
 
     <Button
         android:layout_width="match_parent"
-        android:background="#008CBA"
+        android:background="#9C27B0"
         android:onClick="newl"
         android:layout_marginTop="25dp"
         android:textColor="#fff"

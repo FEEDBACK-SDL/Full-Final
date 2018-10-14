@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#008577</color>-->
-    <!--<color name="colorPrimaryDark">#00574B</color>-->
-    <!--<color name="colorAccent">#D81B60</color>-->
+
     <color name="radio_button_selected_color">#00B2EE</color>
 
     <color name="radio_button_unselected_color">@android:color/transparent</color>
     <color name="ProfileIconColor">#FF000000</color>
-    <color name="colorPrimary">#673AB7</color>
-    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorPrimary">#3b2541</color>
+    <color name="colorPrimaryDark">#27112D</color>
     <color name="colorAccent">#E040FB</color>
     <color name="colorBackground">#151B29</color>
     <color name="colorYellow">#F5FA55</color>
@@ -22,8 +20,9 @@
         <color name="icons">#FFFFFF</color>
         <color name="divider">#BDBDBD</color>
 
-        <color name="textheader">#673AB7</color>
-        <color name="decimals">#673AB7</color>
+        <color name="textheader">#000000</color>
+        <color name="decimals">#000000</color>
+        <color name="cardcolor">#ffffff</color>
 
 
 </resources>

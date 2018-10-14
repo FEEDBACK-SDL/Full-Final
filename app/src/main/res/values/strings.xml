@@ -16,6 +16,7 @@
     <string name="message_minutes">Please Enter Minutes...</string>
 
     <string-array name="Dates">
+        <item>Today</item>
         <item>Yesterday</item>
         <item>Last 3 Days</item>
         <item>Last 7 Days</item>

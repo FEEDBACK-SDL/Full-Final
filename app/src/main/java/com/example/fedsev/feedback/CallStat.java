@@ -117,7 +117,14 @@ public class CallStat extends Fragment {
 
             LocalDate d = LocalDate.parse(p.getDate1());
 
-            if(d.isAfter(date) ){
+            if(po==1){
+                if(d.isAfter(date) && d.isBefore(LocalDate.now()) ){
+                    System.out.println("Check");
+                    newlist.add(p);
+                }
+            }
+
+            else if(d.isAfter(date) ){
                 System.out.println("Check");
                 newlist.add(p);
             }
@@ -142,7 +149,7 @@ public class CallStat extends Fragment {
 
         switch(day){
             case 0:
-                days = 0;
+                days = 1;
                 break;
             case 1:
                 days = 2;
