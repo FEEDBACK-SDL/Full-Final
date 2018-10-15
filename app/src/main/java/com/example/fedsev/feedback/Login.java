@@ -3,9 +3,13 @@ package com.example.fedsev.feedback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,7 +57,7 @@ public class Login extends AppCompatActivity {
         String token = sharedPreferences.getString("token","");
         if(!token.equals("")){
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(API.BASE_URL)
+                    .baseUrl(sharedPreferences.getString("BASE_URL","http://192.168.0.105:8000/"))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             avi = findViewById(R.id.avi);
@@ -83,12 +87,14 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginfunc(View view) {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
+        sharedPreferences.getString("BASE_URL","http://192.168.0.105:8000/");
         String uname = username.getText().toString();
         String pass = password.getText().toString();
 
             if(!uname.equals("") && !pass.equals("")){
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(API.BASE_URL)
+                    .baseUrl(sharedPreferences.getString("BASE_URL","http://192.168.0.105:8000/"))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             avi = findViewById(R.id.avi);
@@ -167,8 +173,10 @@ public void syncData() {
         editor.putLong("rt",0);
         editor.putLong("timeend",now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000 +  30*60*1000);
         editor.apply();
+
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
+                .baseUrl(sharedPreferences.getString("BASE_URL","http://192.168.0.105:8000/"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         avi = findViewById(R.id.avi);
@@ -200,4 +208,32 @@ public void syncData() {
         });
     }
 }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.setting) {
+            //Toast.makeText(MainActivity.this,"Helllo",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(Login.this, Setting.class);
+            startActivity(i);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }

@@ -54,6 +54,8 @@ public class Tab1 extends Fragment
         startCountDownTimer();
 
 
+        TextView textView = v.findViewById(R.id.username);
+        textView.setText(sharedPreferences.getString("first_name","Ayush").toUpperCase());
         return v;
     }
 
