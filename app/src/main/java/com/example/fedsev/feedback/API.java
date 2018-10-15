@@ -14,8 +14,7 @@ import retrofit2.http.POST;
 
 public interface API {
     //static String BASE_URL = "http://192.168.0.105:8000/";
-    @GET("profile")
-    Call<DataFromServer> getData();
+
 
     @FormUrlEncoded
     @POST("verify")

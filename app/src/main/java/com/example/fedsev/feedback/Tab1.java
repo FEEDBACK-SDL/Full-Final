@@ -45,7 +45,7 @@ public class Tab1 extends Fragment
         // method call to initialize the views
         initViews();
         LocalDateTime now = LocalDateTime.now();
-        FancyToast.makeText(getContext(),String.valueOf(MainActivity.myAppDatabase.myDao().getcount()),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+       // FancyToast.makeText(getContext(),String.valueOf(MainActivity.myAppDatabase.myDao().getcount()),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("private_data", Context.MODE_PRIVATE);
         timeCountInMilliSeconds = sharedPreferences.getLong("timeend", 0) - (now.getHour()*60*60*1000 + now.getMinute()*60*1000 + now.getSecond()*1000) ;
         remaining.setText(String.valueOf(MainActivity.myAppDatabase.myDao().getcount()));

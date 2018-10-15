@@ -15,11 +15,11 @@ public interface MyDao
     @Insert
     public void addSyncData(SyncData syncData);
 
-    @Insert
-    public void addCalls(CallsRoom call);
-
-    @Query("select * from CallsRoom")
-    public List<CallsRoom>  getCalls();
+//    @Insert
+//    public void addCalls(CallsRoom call);
+//
+//    @Query("select * from CallsRoom")
+//    public List<CallsRoom>  getCalls();
 
     @Query("select * from syncdata where callisdone = 0 or callisdone = 2 ORDER BY callisdone asc Limit 1 ")
     public SyncData getData();
