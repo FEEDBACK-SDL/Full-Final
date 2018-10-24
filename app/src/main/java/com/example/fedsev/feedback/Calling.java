@@ -344,7 +344,7 @@ public class Calling extends AppCompatActivity {
             MainActivity.myAppDatabase.myDao().addrecord(callStatEntity);
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(sharedPreferences.getString("BASE_URL","http://192.168.0.105:8000/"))
+                    .baseUrl(sharedPreferences.getString("BASE_URL", "http://142.93.217.173:8000/"))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             avi = findViewById(R.id.avi);
