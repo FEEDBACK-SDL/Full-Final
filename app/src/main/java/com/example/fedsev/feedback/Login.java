@@ -88,13 +88,13 @@ public class Login extends AppCompatActivity {
 
     public void loginfunc(View view) {
         SharedPreferences sharedPreferences = this.getSharedPreferences("private_data", Context.MODE_PRIVATE);
-        sharedPreferences.getString("BASE_URL", "http://142.93.217.173:8000/");
+        sharedPreferences.getString("BASE_URL", "http://139.59.29.198:8000/");
         String uname = username.getText().toString();
         String pass = password.getText().toString();
 
             if(!uname.equals("") && !pass.equals("")){
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(sharedPreferences.getString("BASE_URL", "http://142.93.217.173:8000/"))
+                    .baseUrl(sharedPreferences.getString("BASE_URL", "http://139.59.29.198:8000/"))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             avi = findViewById(R.id.avi);
@@ -176,7 +176,7 @@ public void syncData() {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(sharedPreferences.getString("BASE_URL", "http://142.93.217.173:8000/"))
+                .baseUrl(sharedPreferences.getString("BASE_URL", "http://139.59.29.198:8000/"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         avi = findViewById(R.id.avi);
